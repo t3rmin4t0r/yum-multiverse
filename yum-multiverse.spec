@@ -9,6 +9,7 @@ Group:         Development/Languages
 Source:        yum-multiverse.tgz
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch:     noarch
+Requires:      yum-allowdowngrade
 
 %description
 Yum multiversion plugin allows installation of multiple packages

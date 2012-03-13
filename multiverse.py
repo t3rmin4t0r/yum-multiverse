@@ -16,7 +16,8 @@ def postreposetup_hook(conduit):
      base = conduit._base
      for repo in conduit.getRepos().listEnabled():
          patterns = [pkg.replace("*", '.*') for pkg in repo.multiversions]
-         regex = re.compile("^(" + ( ")|(".join(patterns) ) + ")$")
-         pkgs = [pkg.name for pkg in base.pkgSack.returnPackages(repo.id) if regex.match(pkg.name)]
-         base.conf.installonlypkgs.extend(pkgs)
-         #print base.conf.installonlypkgs
+         if(len(patterns)):
+             regex = re.compile("^(" + ( ")|(".join(patterns) ) + ")$")
+             pkgs = [pkg.name for pkg in base.pkgSack.returnPackages(repo.id) if regex.match(pkg.name)]
+             base.conf.installonlypkgs.extend(pkgs)
+             #print base.conf.installonlypkgs
